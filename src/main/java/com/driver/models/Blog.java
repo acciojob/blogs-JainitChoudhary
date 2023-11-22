@@ -3,37 +3,30 @@ package com.driver.models;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "blog")
+@Table(name="Blog")
 public class Blog {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer blogId;
-
+    private int blogId;
     private String title;
-
     private String content;
-
     @CreationTimestamp
-    private Date pubDate;
+    private Date publicationDate;
 
     @ManyToOne
     @JoinColumn
     private User user;
 
 
-    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-    @JoinColumn
-    private List<Image>imagesList;
+    @OneToMany(mappedBy = "blog",cascade = CascadeType.ALL)
+    private List<Image> imageList;
 
-
-
-    public Blog(){
-
+    public Blog() {
     }
 
     public Blog(User user, String title, String content) {
@@ -41,22 +34,20 @@ public class Blog {
         this.content = content;
         this.user = user;
     }
-
-
-    public Blog(Integer blogId, String title, String content, Date pubDate, User user, List<Image> imagesList) {
+    public Blog(int blogId, String title, String content, Date publicationDate, User user, List<Image> imageList) {
         this.blogId = blogId;
         this.title = title;
         this.content = content;
-        this.pubDate = pubDate;
+        this.publicationDate = publicationDate;
         this.user = user;
-        this.imagesList = imagesList;
+        this.imageList = imageList;
     }
 
-    public Integer getBlogId() {
+    public int getId() {
         return blogId;
     }
 
-    public void setBlogId(Integer blogId) {
+    public void setId(int blogId) {
         this.blogId = blogId;
     }
 
@@ -77,11 +68,11 @@ public class Blog {
     }
 
     public Date getPubDate() {
-        return pubDate;
+        return publicationDate;
     }
 
-    public void setPubDate(Date pubDate) {
-        this.pubDate = pubDate;
+    public void setPubDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
     public User getUser() {
@@ -92,11 +83,13 @@ public class Blog {
         this.user = user;
     }
 
-    public List<Image> getImagesList() {
-        return imagesList;
+    public List<Image> getImageList() {
+        return imageList;
     }
 
-    public void setImagesList(List<Image> imagesList) {
-        this.imagesList = imagesList;
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
     }
+
+
 }

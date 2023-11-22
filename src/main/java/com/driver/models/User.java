@@ -1,58 +1,54 @@
 package com.driver.models;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "table")
-public class User {
+@Table(name="user")
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
-
-    private String userName;
-
+    private int userId;
+    private String username;
     private String password;
+    private String firstName="test";
+    private String lastName="test";
 
-    private String firstName= "test";
-    private String lastName ="test";
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JoinColumn
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Blog> blogList;
 
-    public User(){
-
+    public User() {
     }
 
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password=password;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    public User(Integer userId, String userName, String password, String firstName, String lastName, List<Blog> blogList) {
+    public User(int userId, String username, String password, String firstName, String lastName, List<Blog> blogList) {
         this.userId = userId;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.blogList = blogList;
     }
 
-    public Integer getUserId() {
+    public int getId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setId(int userId) {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
